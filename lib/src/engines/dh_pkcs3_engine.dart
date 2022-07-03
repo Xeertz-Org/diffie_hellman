@@ -5,21 +5,29 @@ import 'package:diffie_hellman/src/models/dh_parameter_spec.dart';
 import 'package:diffie_hellman/src/rng/dh_fortuna_prng.dart';
 import 'package:flutter/cupertino.dart';
 
+/// Concrete implementation of [DhEngine].
+/// Use the constructor DhPkcs3Engine.fromGroup() with a specific group ID
+/// for predefined engine objects based on https://www.ietf.org/rfc/rfc3526.txt
 class DhPkcs3Engine implements DhEngine {
+
   final DhParameterSpec _parameterSpec;
 
   late final BigInt _publicKey;
   late final BigInt _privateKey;
   late final BigInt _secretKey;
 
+  /// Diffie-Hellman parameters used by this engine
   DhParameterSpec get parameterSpec => _parameterSpec;
 
+  /// Must call generateKeyPair() method before accessing this value
   @override
   BigInt get publicKey => _publicKey;
 
+  /// Must call generateKeyPair() method before accessing this value
   @override
   BigInt get privateKey => _privateKey;
 
+  // Must call computeSecretKey() method before accessing this value
   @override
   BigInt get secretKey => _secretKey;
 
@@ -33,10 +41,12 @@ class DhPkcs3Engine implements DhEngine {
     );
   }
 
+  /// Construct an engine with the desired [DhParameterSpec]
   DhPkcs3Engine({
     required DhParameterSpec parameterSpec,
   }) : _parameterSpec = parameterSpec;
 
+  /// Compute the secret key using the other party public key
   @override
   BigInt computeSecretKey(BigInt otherPublicKey) {
     return otherPublicKey.modPow(
@@ -45,6 +55,7 @@ class DhPkcs3Engine implements DhEngine {
     );
   }
 
+  /// Generate [publicKey] and [privateKey] based on the [parameterSpec] of this engine
   @override
   DhKeyPair generateKeyPair() {
     _privateKey = generatePrivateKey();

@@ -1,3 +1,4 @@
+/// This class is a container for a key pair (a public key and a private key)
 class DhKeyPair {
   final BigInt _publicKey;
   final BigInt _privateKey;

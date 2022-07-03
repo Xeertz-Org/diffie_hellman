@@ -64,7 +64,9 @@ class DhPkcs3Engine implements DhEngine {
   @override
   @protected
   BigInt generatePublicKey(BigInt privateKey) {
-    return BigInt.from(_parameterSpec.g,).modPow(
+    return BigInt.from(
+      _parameterSpec.g,
+    ).modPow(
       privateKey,
       _parameterSpec.p,
     );

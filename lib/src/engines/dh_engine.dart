@@ -2,7 +2,6 @@ import 'package:diffie_hellman/src/models/dh_key_pair.dart';
 import 'package:flutter/foundation.dart';
 
 abstract class DhEngine {
-
   BigInt get publicKey;
 
   BigInt get privateKey;

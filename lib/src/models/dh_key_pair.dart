@@ -8,7 +8,7 @@ class DhKeyPair {
   })  : _publicKey = publicKey,
         _privateKey = privateKey;
 
-  int get privateKey => _privateKey.toInt();
+  BigInt get privateKey => _privateKey;
 
-  int get publicKey => _publicKey.toInt();
+  BigInt get publicKey => _publicKey;
 }

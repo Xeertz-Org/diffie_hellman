@@ -5,11 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3d778744-4399-4b2c-8652-27509da8127b" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/diffie_hellman.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/diffie_hellman.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/Dart_Packages.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/diffie_hellman.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/diffie_hellman.dart" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/lib/src/models/dh_key_pair.dart" beforeDir="false" afterPath="$PROJECT_DIR$/lib/src/models/dh_key_pair.dart" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -70,7 +66,7 @@
       <workItem from="1656883168080" duration="53000" />
       <workItem from="1656883232409" duration="64000" />
       <workItem from="1656883305251" duration="140000" />
-      <workItem from="1656883456413" duration="1364000" />
+      <workItem from="1656883456413" duration="1727000" />
     </task>
     <servers />
   </component>

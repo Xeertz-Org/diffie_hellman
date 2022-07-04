@@ -1,5 +1,5 @@
 # Dart Diffie-Hellman
-Pure Dart implementation of modular DH groups. Based on PKCS#3 (https://www.teletrust.de/fileadmin/files/oid/oid_pkcs-3v1-4.pdf)
+Pure Dart implementation of modular DH groups. Based on PKCS#3.
 
 ## Usage
 ```
@@ -31,3 +31,7 @@ print('Other secret Key: ${otherDhEngine.computeSecretKey(keyPair.publicKey)}');
 | 15       | 4096-bit       | 150-240                  |
 | 17       | 6144-bit       | 170-270                  |
 | 18       | 8192-bit       | 190-310                  |
+
+## References
+- https://www.teletrust.de/fileadmin/files/oid/oid_pkcs-3v1-4.pdf
+- https://www.ietf.org/rfc/rfc3526.txt

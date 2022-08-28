@@ -30,10 +30,13 @@ class SecureRandomGenerator {
 
 extension RandomExtension on Random {
   BigInt nextBigInt(int bitLength) {
-    final random = Random.secure();
-    final builder = BytesBuilder();
-    for (var i = 0; i < bitLength; ++i) {
-      builder.addByte(random.nextInt(256));
+    BytesBuilder builder = BytesBuilder();
+    if(bitLength % 8 != 0) {
+      throw('Invalid bitLength value - $bitLength');
+    }
+    int parts = (bitLength / 8) as int;
+    for (var i = 0; i < parts; ++i) {
+      builder.addByte(nextInt(256));
     }
     Uint8List bytes = builder.toBytes();
     return bytes.toBigInt();

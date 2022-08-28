@@ -4,3 +4,6 @@
 
 ## 0.0.3
 * Added docs
+
+## 0.1.0
+* Removed PointyCastle dependency. Now the secure random generator uses Random.secure() from dart.math

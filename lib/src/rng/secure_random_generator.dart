@@ -31,8 +31,8 @@ class SecureRandomGenerator {
 extension RandomExtension on Random {
   BigInt nextBigInt(int bitLength) {
     BytesBuilder builder = BytesBuilder();
-    if(bitLength % 8 != 0) {
-      throw('Invalid bitLength value - $bitLength');
+    if (bitLength % 8 != 0) {
+      throw ('Invalid bitLength value - $bitLength');
     }
     double parts = bitLength / 8;
     for (var i = 0; i < parts.toInt(); ++i) {

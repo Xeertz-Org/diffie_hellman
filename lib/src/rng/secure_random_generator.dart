@@ -34,8 +34,8 @@ extension RandomExtension on Random {
     if(bitLength % 8 != 0) {
       throw('Invalid bitLength value - $bitLength');
     }
-    int parts = bitLength ~/ 8;
-    for (var i = 0; i < parts; ++i) {
+    double parts = bitLength / 8;
+    for (var i = 0; i < parts.toInt(); ++i) {
       builder.addByte(nextInt(256));
     }
     Uint8List bytes = builder.toBytes();

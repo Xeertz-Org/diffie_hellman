@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'dart:typed_data';
 
 class SecureRandomGenerator {
   static BigInt generateDhPrivateValue(int bitLength) {
@@ -16,7 +17,7 @@ class SecureRandomGenerator {
 
     bool loopCondition = true;
     while (loopCondition) {
-      generated = BigInt.from(rnd.nextInt(bitLength));
+      generated = rnd.nextBigInt(bitLength);
       if (generated.compareTo(lowerBound) >= 0 &&
           generated.compareTo(BigInt.two * lowerBound) < 0) {
         loopCondition = false;
@@ -24,6 +25,30 @@ class SecureRandomGenerator {
     }
 
     return generated;
+  }
+}
+
+extension RandomExtension on Random {
+  BigInt nextBigInt(int bitLength) {
+    final random = Random.secure();
+    final builder = BytesBuilder();
+    for (var i = 0; i < bitLength; ++i) {
+      builder.addByte(random.nextInt(256));
+    }
+    Uint8List bytes = builder.toBytes();
+    return bytes.toBigInt();
+  }
+}
+
+extension Uint8ListExtension on Uint8List {
+  BigInt toBigInt() {
+    BigInt result = BigInt.zero;
+
+    for (final byte in this) {
+      // reading in big-endian, so we essentially concat the new byte to the end
+      result = (result << 8) | BigInt.from(byte & 0xff);
+    }
+    return result;
   }
 }
 

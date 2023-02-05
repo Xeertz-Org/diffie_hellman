@@ -1,5 +1,5 @@
 # Dart Diffie-Hellman
-Pure Dart implementation of modular DH groups. Based on PKCS#3.
+Dart implementation of modular DH groups. Based on PKCS#3.
 
 ## Usage
 ```

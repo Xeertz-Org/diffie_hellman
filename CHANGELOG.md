@@ -6,6 +6,9 @@
 
 ## 0.1.0
 * Removed PointyCastle dependency. Now the secure random generator uses Random.secure() from dart.math
-* 
+
 ## 0.1.1
 * Updated pubspec.yaml
+
+## 0.1.2
+* Changed private utility method `toBigInt()`

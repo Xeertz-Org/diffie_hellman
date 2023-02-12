@@ -49,7 +49,7 @@ extension Uint8ListExtension on Uint8List {
 
     for (final byte in this) {
       // reading in big-endian, so we essentially concat the new byte to the end
-      result = (result << 8) | BigInt.from(byte & 0xff);
+      result = (result << 8) | BigInt.from(byte);
     }
     return result;
   }

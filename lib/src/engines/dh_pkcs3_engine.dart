@@ -18,6 +18,12 @@ class DhPkcs3Engine implements DhEngine {
   /// Diffie-Hellman parameters used by this engine
   DhParameterSpec get parameterSpec => _parameterSpec;
 
+  // Set public Key
+  set setPublicKey(BigInt publicKey) => _publicKey = publicKey;
+
+  // Set private Key
+  set setPrivateKey(BigInt private) => _privateKey = private;
+
   /// Must call generateKeyPair() method before accessing this value
   @override
   BigInt get publicKey => _publicKey;

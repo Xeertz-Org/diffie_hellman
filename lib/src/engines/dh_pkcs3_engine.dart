@@ -26,6 +26,12 @@ class DhPkcs3Engine implements DhEngine {
   @override
   BigInt get privateKey => _privateKey;
 
+
+  set setPublicKey(BigInt publicKey) => _publicKey = publicKey;
+
+  // Set private Key
+  set setPrivateKey(BigInt private) => _privateKey = private;
+  
   // Must call computeSecretKey() method before accessing this value
   @override
   BigInt get secretKey => _secretKey;

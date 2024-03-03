@@ -1,12 +1,14 @@
-import 'package:diffie_hellman/src/models/dh_key_pair.dart';
-import 'package:flutter/foundation.dart';
+import 'package:diffie_hellman/src/engines/models/dh_key_pair.dart';
+import 'package:meta/meta.dart';
 
 abstract class DhEngine {
-  BigInt get publicKey;
+  BigInt? get publicKey;
 
-  BigInt get privateKey;
+  BigInt? get privateKey;
 
-  BigInt get secretKey;
+  DhKeyPair? get keyPair;
+
+  BigInt? get secretKey;
 
   DhKeyPair generateKeyPair();
 

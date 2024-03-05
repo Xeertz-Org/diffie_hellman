@@ -24,7 +24,7 @@ print(
 );
 ```
 
-### Engine configuration
+### **Engine configuration**
 
 The engine can be configured in three ways:
 
@@ -58,7 +58,7 @@ DhKeyPair keyPair = DhKeyPair(privateKey: privateKey, publicKey: publicKey);
 DhPkcs3Engine dhEngine = DhPkcs3Engine.fromKeyPair(keyPair);
 ```
 
-### PEM serialization/deserialization
+### **PEM serialization/deserialization**
 
 Each key can be constructed from a PEM string
 
@@ -94,8 +94,8 @@ String parameterPem = parameter.toPem();
 | 17       | 6144-bit                                | 512                         | 250                |
 | 18       | 8192-bit                                | 640                         | 320                |
 | 22       | 1024-bit (160-bit Prime Order Subgroup) | 160                         | 80                 |
-| 23       | 2048-bit (160-bit Prime Order Subgroup) | 224                         | 112                |
-| 24       | 2048-bit (160-bit Prime Order Subgroup) | 256                         | 112                |
+| 23       | 2048-bit (224-bit Prime Order Subgroup) | 224                         | 112                |
+| 24       | 2048-bit (256-bit Prime Order Subgroup) | 256                         | 112                |
 
 ## References
 

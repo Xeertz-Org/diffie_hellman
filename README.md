@@ -83,16 +83,19 @@ String parameterPem = parameter.toPem();
 
 ## DH Groups
 
-| Group ID | Modulus length (p) | Exponent size (l) (in bits) | Strength (in bits) |
-|----------|--------------------|-----------------------------|--------------------|
-| 1        | 768-bit            | 160                         | -                  |
-| 2        | 1024-bit           | 160                         | 80                 |
-| 5        | 1536-bit           | 240                         | 120                |
-| 14       | 2048-bit           | 320                         | 160                |
-| 15       | 3072-bit           | 384                         | 190                |
-| 16       | 4096-bit           | 480                         | 240                |
-| 17       | 6144-bit           | 512                         | 250                |
-| 18       | 8192-bit           | 640                         | 320                |
+| Group ID | Modulus length (p)                      | Exponent size (l) (in bits) | Strength (in bits) |
+|----------|-----------------------------------------|-----------------------------|--------------------|
+| 1        | 768-bit                                 | 160                         | -                  |
+| 2        | 1024-bit                                | 160                         | 80                 |
+| 5        | 1536-bit                                | 240                         | 120                |
+| 14       | 2048-bit                                | 320                         | 160                |
+| 15       | 3072-bit                                | 384                         | 190                |
+| 16       | 4096-bit                                | 480                         | 240                |
+| 17       | 6144-bit                                | 512                         | 250                |
+| 18       | 8192-bit                                | 640                         | 320                |
+| 22       | 1024-bit (160-bit Prime Order Subgroup) | 160                         | 80                 |
+| 23       | 2048-bit (160-bit Prime Order Subgroup) | 224                         | 112                |
+| 24       | 2048-bit (160-bit Prime Order Subgroup) | 256                         | 112                |
 
 ## References
 

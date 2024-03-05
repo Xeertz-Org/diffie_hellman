@@ -43,8 +43,8 @@ String publicKeyPem = publicKey.toPem();
 The same applies to the DH parameters
 
 ```
-DhParameters parameters = DhParameters.fromPem('...');
-String parametersPem = parameters.toPem();
+DhParameter parameter = DhParameter.fromPem('...');
+String parameterPem = parameter.toPem();
 ```
 
 ## DH Groups

@@ -1,5 +1,32 @@
 // https://www.ietf.org/rfc/rfc3526.txt
 
+import 'package:diffie_hellman/src/groups/dh_group.dart';
+import 'package:diffie_hellman/src/spec/dh_parameter.dart';
+
+DhParameter getDhParameter(
+  DhGroup group, {
+  int? privateValueLength,
+}) {
+  return DhParameter(
+    p: primeMap[group]!,
+    g: generator,
+    length: privateValueLength ?? defaultPrivateValueLength,
+  );
+}
+
+final Map<DhGroup, BigInt> primeMap = {
+  DhGroup.g1: BigInt.parse(g1Prime, radix: 16),
+  DhGroup.g2: BigInt.parse(g2Prime, radix: 16),
+  DhGroup.g5: BigInt.parse(g5Prime, radix: 16),
+  DhGroup.g14: BigInt.parse(g14Prime, radix: 16),
+  DhGroup.g15: BigInt.parse(g15Prime, radix: 16),
+  DhGroup.g16: BigInt.parse(g16Prime, radix: 16),
+  DhGroup.g17: BigInt.parse(g17Prime, radix: 16),
+  DhGroup.g18: BigInt.parse(g18Prime, radix: 16),
+};
+
+const int defaultPrivateValueLength = 2048;
+
 const int generator = 2;
 
 /// GROUP 1 - 768 bits

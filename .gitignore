@@ -1,3 +1,6 @@
+# Avoid committing pubspec.lock for library packages
+pubspec.lock
+
 # Miscellaneous
 *.class
 *.log

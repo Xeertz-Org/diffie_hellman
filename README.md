@@ -1,7 +1,9 @@
 # Dart Diffie-Hellman
+
 Dart implementation of finite field Diffie-Hellman. Based on PKCS#3.
 
 ## Usage
+
 ```
 DhPkcs3Engine dhEngine = DhPkcs3Engine.fromGroup(18);
 DhPkcs3Engine otherDhEngine = DhPkcs3Engine.fromGroup(18);
@@ -19,6 +21,29 @@ print('Secret Key: ${dhEngine.computeSecretKey(otherKeyPair.publicKey)}');
 print('Other secret Key: ${otherDhEngine.computeSecretKey(keyPair.publicKey)}');
 ```
 
+### PEM serialization/deserialization
+
+Each key can be constructed from a PEM string
+
+```
+DhPrivateKey privateKey = DhPrivateKey.fromPem('...');
+DhPublicKey publicKey = DhPublicKey.fromPem('...');
+```
+
+On the other hand, the keys can be serialized to a PEM string
+
+```
+String privateKeyPem = privateKey.toPem();
+String publicKeyPem = publicKey.toPem();
+```
+
+The same applies to the DH parameters
+
+```
+DhParameters parameters = DhParameters.fromPem('...');
+String parametersPem = parameters.toPem();
+```
+
 ## DH Groups
 
 | Group ID | Modulus length | Strength range (in bits) |
@@ -33,5 +58,6 @@ print('Other secret Key: ${otherDhEngine.computeSecretKey(keyPair.publicKey)}');
 | 18       | 8192-bit       | 190-310                  |
 
 ## References
+
 - https://www.teletrust.de/fileadmin/files/oid/oid_pkcs-3v1-4.pdf
 - https://www.ietf.org/rfc/rfc3526.txt

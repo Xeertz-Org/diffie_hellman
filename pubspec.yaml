@@ -1,6 +1,6 @@
 name: diffie_hellman
 description: Dart implementation of finite field Diffie-Hellman. Based on PKCS#3.
-version: 1.1.4
+version: 1.1.5
 repository: https://github.com/mrpurpleknight/diffie_hellman
 homepage: https://pub.dev/packages/diffie_hellman
 documentation: https://xeertz.com/diffie-hellman

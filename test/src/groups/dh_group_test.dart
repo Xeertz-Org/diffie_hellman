@@ -3,121 +3,165 @@ import 'package:diffie_hellman/src/groups/dh_groups.dart';
 import 'package:test/test.dart';
 
 void main() {
-  group('Test getParameterSpec', () {
-    test('DhGroup.g1 (with length)', () {
-      expect(
-        DhGroup.g1.getParameter(privateValueLength: 1024),
-        DhParameter(
-          p: BigInt.parse(
-            g1Prime,
-            radix: 16,
-          ),
-          g: 2,
-          length: 1024,
-        ),
-      );
-    });
+  group('Test getParameter', () {
     test('DhGroup.g1', () {
       expect(
-        DhGroup.g1.getParameter(),
+        DhGroup.g1.parameter,
         DhParameter(
           p: BigInt.parse(
-            g1Prime,
+            g1P,
             radix: 16,
           ),
-          g: 2,
-          length: 2048,
+          g: BigInt.two,
+          l: 160,
         ),
       );
     });
     test('DhGroup.g2', () {
       expect(
-        DhGroup.g2.getParameter(),
+        DhGroup.g2.parameter,
         DhParameter(
           p: BigInt.parse(
-            g2Prime,
+            g2P,
             radix: 16,
           ),
-          g: 2,
-          length: 2048,
+          g: BigInt.two,
+          l: 160,
         ),
       );
     });
     test('DhGroup.g5', () {
       expect(
-        DhGroup.g5.getParameter(),
+        DhGroup.g5.parameter,
         DhParameter(
           p: BigInt.parse(
-            g5Prime,
+            g5P,
             radix: 16,
           ),
-          g: 2,
-          length: 2048,
+          g: BigInt.two,
+          l: 240,
         ),
       );
     });
     test('DhGroup.g14', () {
       expect(
-        DhGroup.g14.getParameter(),
+        DhGroup.g14.parameter,
         DhParameter(
           p: BigInt.parse(
-            g14Prime,
+            g14P,
             radix: 16,
           ),
-          g: 2,
-          length: 2048,
+          g: BigInt.two,
+          l: 320,
         ),
       );
     });
     test('DhGroup.g15', () {
       expect(
-        DhGroup.g15.getParameter(),
+        DhGroup.g15.parameter,
         DhParameter(
           p: BigInt.parse(
-            g15Prime,
+            g15P,
             radix: 16,
           ),
-          g: 2,
-          length: 2048,
+          g: BigInt.two,
+          l: 384,
         ),
       );
     });
     test('DhGroup.g16', () {
       expect(
-        DhGroup.g16.getParameter(),
+        DhGroup.g16.parameter,
         DhParameter(
           p: BigInt.parse(
-            g16Prime,
+            g16P,
             radix: 16,
           ),
-          g: 2,
-          length: 2048,
+          g: BigInt.two,
+          l: 480,
         ),
       );
     });
     test('DhGroup.g17', () {
       expect(
-        DhGroup.g17.getParameter(),
+        DhGroup.g17.parameter,
         DhParameter(
           p: BigInt.parse(
-            g17Prime,
+            g17P,
             radix: 16,
           ),
-          g: 2,
-          length: 2048,
+          g: BigInt.two,
+          l: 512,
         ),
       );
     });
     test('DhGroup.g18', () {
       expect(
-        DhGroup.g18.getParameter(),
+        DhGroup.g18.parameter,
         DhParameter(
           p: BigInt.parse(
-            g18Prime,
+            g18P,
             radix: 16,
           ),
-          g: 2,
-          length: 2048,
+          g: BigInt.two,
+          l: 640,
+        ),
+      );
+    });
+    test('DhGroup.g22', () {
+      expect(
+        DhGroup.g22.parameter,
+        DhParameter(
+          p: BigInt.parse(
+            g22P,
+            radix: 16,
+          ),
+          g: BigInt.parse(
+            g22G,
+            radix: 16,
+          ),
+          l: BigInt.parse(
+            g22Q,
+            radix: 16,
+          ).bitLength,
+        ),
+      );
+    });
+    test('DhGroup.g23', () {
+      expect(
+        DhGroup.g23.parameter,
+        DhParameter(
+          p: BigInt.parse(
+            g23P,
+            radix: 16,
+          ),
+          g: BigInt.parse(
+            g23G,
+            radix: 16,
+          ),
+          l: BigInt.parse(
+            g23Q,
+            radix: 16,
+          ).bitLength,
+        ),
+      );
+    });
+    test('DhGroup.g24', () {
+      expect(
+        DhGroup.g24.parameter,
+        DhParameter(
+          p: BigInt.parse(
+            g24P,
+            radix: 16,
+          ),
+          g: BigInt.parse(
+            g24G,
+            radix: 16,
+          ),
+          l: BigInt.parse(
+            g24Q,
+            radix: 16,
+          ).bitLength,
         ),
       );
     });

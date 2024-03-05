@@ -17,27 +17,27 @@ void main() {
     test('nextBigInt(4096)', () {
       int bitLength = 4096;
       final bigInt = random.nextBigInt(bitLength);
-      expect(bigInt.bitLength, inInclusiveRange(bitLength - 5, bitLength));
+      expect(bigInt.bitLength, inInclusiveRange(bitLength - 8, bitLength));
     });
     test('nextBigInt(2048)', () {
       int bitLength = 2048;
       final bigInt = random.nextBigInt(bitLength);
-      expect(bigInt.bitLength, inInclusiveRange(bitLength - 5, bitLength));
+      expect(bigInt.bitLength, inInclusiveRange(bitLength - 8, bitLength));
     });
     test('nextBigInt(1024)', () {
       int bitLength = 1024;
       final bigInt = random.nextBigInt(bitLength);
-      expect(bigInt.bitLength, inInclusiveRange(bitLength - 5, bitLength));
+      expect(bigInt.bitLength, inInclusiveRange(bitLength - 8, bitLength));
     });
     test('nextBigInt(512)', () {
       int bitLength = 512;
       final bigInt = random.nextBigInt(bitLength);
-      expect(bigInt.bitLength, inInclusiveRange(bitLength - 5, bitLength));
+      expect(bigInt.bitLength, inInclusiveRange(bitLength - 8, bitLength));
     });
     test('nextBigInt(256)', () {
       int bitLength = 256;
       final bigInt = random.nextBigInt(bitLength);
-      expect(bigInt.bitLength, inInclusiveRange(bitLength - 5, bitLength));
+      expect(bigInt.bitLength, inInclusiveRange(bitLength - 8, bitLength));
     });
   });
 

@@ -37,24 +37,15 @@ class DhPkcs3Engine implements DhEngine {
     DhKeyPair? keyPair,
   }) : _keyPair = keyPair;
 
-  /// Constructs a [DhPkcs3Engine] instance using a group ID.
-  ///
-  /// The [group] parameter specifies the Diffie-Hellman group to use.
-  /// The [privateValueLength] parameter specifies the length in bits of the random exponent (private key).
-  /// If not provided, the default value of 2048 is used.
-  factory DhPkcs3Engine.fromGroup(
-    DhGroup group, {
-    int? privateValueLength,
-  }) =>
-      DhPkcs3Engine._(
-        parameter: group.getParameter(privateValueLength: privateValueLength),
-      );
+  /// Constructs a [DhPkcs3Engine] instance using a [DhGroup].
+  factory DhPkcs3Engine.fromGroup(DhGroup group) =>
+      DhPkcs3Engine._(parameter: group.parameter);
+
+  /// Constructs a [DhPkcs3Engine] instance using a [DhParameter].
+  factory DhPkcs3Engine.fromParameter(DhParameter parameter) =>
+      DhPkcs3Engine._(parameter: parameter);
 
   /// Constructs a [DhPkcs3Engine] instance using a [DhKeyPair].
-  ///
-  /// The [keyPair] parameter specifies the Diffie-Hellman key pair to use.
-  /// The [privateKeyLength] parameter specifies the length of the private key.
-  /// If not provided, the default value of 256 is used.
   factory DhPkcs3Engine.fromKeyPair(DhKeyPair keyPair) => DhPkcs3Engine._(
         parameter: keyPair.parameter,
         keyPair: keyPair,
@@ -89,9 +80,8 @@ class DhPkcs3Engine implements DhEngine {
   @override
   @protected
   DhPrivateKey generatePrivateKey() => DhPrivateKey(
-        parameter.length != null
-            ? DhRandomGenerator.generatePrivateValueWithLength(
-                parameter.length!)
+        parameter.l != null
+            ? DhRandomGenerator.generatePrivateValueWithLength(parameter.l!)
             : DhRandomGenerator.generatePrivateValueFromP(parameter.p),
         parameter: parameter,
       );
@@ -99,9 +89,7 @@ class DhPkcs3Engine implements DhEngine {
   @override
   @protected
   DhPublicKey generatePublicKey(BigInt privateValue) => DhPublicKey(
-        BigInt.from(
-          parameter.g,
-        ).modPow(
+        parameter.g.modPow(
           privateValue,
           parameter.p,
         ),

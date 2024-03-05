@@ -2,8 +2,6 @@ import 'package:diffie_hellman/diffie_hellman.dart';
 import 'package:test/test.dart';
 
 void main() {
-  int iterations = 50;
-
   group('Test constructors', () {
     test('fromKeyPair', () {
       DhParameter parameter = DhParameter(
@@ -20,7 +18,7 @@ void main() {
           '150201410623989347868579314525119658923402674799093063288032'
           '9238408161847',
         ),
-        g: 2,
+        g: BigInt.two,
       );
       DhKeyPair keyPair = DhKeyPair(
         publicKey: DhPublicKey.fromPem(
@@ -63,7 +61,7 @@ void main() {
       expect(engine.secretKey, isNull);
     });
     test('fromGroup', () {
-      DhParameter parameterSpec = DhGroup.g14.getParameter();
+      DhParameter parameterSpec = DhGroup.g14.parameter;
       DhPkcs3Engine engine = DhPkcs3Engine.fromGroup(DhGroup.g14);
 
       expect(engine.parameter, parameterSpec);
@@ -75,7 +73,7 @@ void main() {
   });
 
   test('Test computeSecretKey - no keyPair', () {
-    DhParameter parameterSpec = DhGroup.g18.getParameter();
+    DhParameter parameterSpec = DhGroup.g18.parameter;
     DhPkcs3Engine engine = DhPkcs3Engine.fromGroup(DhGroup.g18);
 
     expect(
@@ -92,16 +90,19 @@ void main() {
   });
 
   test('Test generateKeyPair', () {
-    DhParameter parameterSpec = DhGroup.g18.getParameter();
+    DhParameter parameter = DhGroup.g18.parameter;
     DhPkcs3Engine engine = DhPkcs3Engine.fromGroup(DhGroup.g18);
 
     DhKeyPair keyPair = engine.generateKeyPair();
 
-    expect(engine.parameter, parameterSpec);
+    expect(engine.parameter, parameter);
     expect(engine.keyPair, keyPair);
-    expect(engine.keyPair?.parameter, parameterSpec);
+    expect(engine.keyPair?.parameter, parameter);
     expect(engine.publicKey, isNotNull);
     expect(engine.privateKey, isNotNull);
+    expect(engine.publicKey!.value.bitLength,
+        inInclusiveRange(parameter.p.bitLength - 5, parameter.p.bitLength));
+    expect(engine.privateKey!.value.bitLength, DhGroup.g18.parameter.l);
     expect(engine.secretKey, isNull);
   });
 
@@ -127,396 +128,10 @@ void main() {
       BigInt otherSecretKey =
           otherEngine.computeSecretKey(keyPair.publicKey.value);
       expect(secretKey, otherSecretKey);
-    });
-  });
-
-  group('Test generateKeyPair (timing)', () {
-    test('DhGroup.g1', () {
-      DhGroup group = DhGroup.g1;
-      DhPkcs3Engine engine = DhPkcs3Engine.fromGroup(group);
-
-      Stopwatch stopwatch = Stopwatch();
-      List<int> times = [];
-
-      for (int i = 0; i < iterations; i++) {
-        stopwatch.start();
-
-        engine.generateKeyPair();
-
-        stopwatch.stop();
-        times.add(stopwatch.elapsedMilliseconds);
-        stopwatch.reset();
-      }
-
-      int totalTime = times.reduce((a, b) => a + b);
-      double meanTime = totalTime / times.length;
-
-      print('generateKeyPair() mean: $meanTime ms (x$iterations) ($group)');
-    });
-    test('DhGroup.g2', () {
-      DhGroup group = DhGroup.g2;
-      DhPkcs3Engine engine = DhPkcs3Engine.fromGroup(group);
-
-      Stopwatch stopwatch = Stopwatch();
-      List<int> times = [];
-
-      for (int i = 0; i < iterations; i++) {
-        stopwatch.start();
-
-        engine.generateKeyPair();
-
-        stopwatch.stop();
-        times.add(stopwatch.elapsedMilliseconds);
-        stopwatch.reset();
-      }
-
-      int totalTime = times.reduce((a, b) => a + b);
-      double meanTime = totalTime / times.length;
-
-      print('generateKeyPair() mean: $meanTime ms (x$iterations) ($group)');
-    });
-    test('DhGroup.g5', () {
-      DhGroup group = DhGroup.g5;
-      DhPkcs3Engine engine = DhPkcs3Engine.fromGroup(group);
-
-      Stopwatch stopwatch = Stopwatch();
-      List<int> times = [];
-
-      for (int i = 0; i < iterations; i++) {
-        stopwatch.start();
-
-        engine.generateKeyPair();
-
-        stopwatch.stop();
-        times.add(stopwatch.elapsedMilliseconds);
-        stopwatch.reset();
-      }
-
-      int totalTime = times.reduce((a, b) => a + b);
-      double meanTime = totalTime / times.length;
-
-      print('generateKeyPair() mean: $meanTime ms (x$iterations) ($group)');
-    });
-    test('DhGroup.g14', () {
-      DhGroup group = DhGroup.g14;
-      DhPkcs3Engine engine = DhPkcs3Engine.fromGroup(group);
-
-      Stopwatch stopwatch = Stopwatch();
-      List<int> times = [];
-
-      for (int i = 0; i < iterations; i++) {
-        stopwatch.start();
-
-        engine.generateKeyPair();
-
-        stopwatch.stop();
-        times.add(stopwatch.elapsedMilliseconds);
-        stopwatch.reset();
-      }
-
-      int totalTime = times.reduce((a, b) => a + b);
-      double meanTime = totalTime / times.length;
-
-      print('generateKeyPair() mean: $meanTime ms (x$iterations) ($group)');
-    });
-    test('DhGroup.g15', () {
-      DhGroup group = DhGroup.g15;
-      DhPkcs3Engine engine = DhPkcs3Engine.fromGroup(group);
-
-      Stopwatch stopwatch = Stopwatch();
-      List<int> times = [];
-
-      for (int i = 0; i < iterations; i++) {
-        stopwatch.start();
-
-        engine.generateKeyPair();
-
-        stopwatch.stop();
-        times.add(stopwatch.elapsedMilliseconds);
-        stopwatch.reset();
-      }
-
-      int totalTime = times.reduce((a, b) => a + b);
-      double meanTime = totalTime / times.length;
-
-      print('generateKeyPair() mean: $meanTime ms (x$iterations) ($group)');
-    });
-    test('DhGroup.g16', () {
-      DhGroup group = DhGroup.g16;
-      DhPkcs3Engine engine = DhPkcs3Engine.fromGroup(group);
-
-      Stopwatch stopwatch = Stopwatch();
-      List<int> times = [];
-
-      for (int i = 0; i < iterations; i++) {
-        stopwatch.start();
-
-        engine.generateKeyPair();
-
-        stopwatch.stop();
-        times.add(stopwatch.elapsedMilliseconds);
-        stopwatch.reset();
-      }
-
-      int totalTime = times.reduce((a, b) => a + b);
-      double meanTime = totalTime / times.length;
-
-      print('generateKeyPair() mean: $meanTime ms (x$iterations) ($group)');
-    });
-    test('DhGroup.g17', () {
-      DhGroup group = DhGroup.g17;
-      DhPkcs3Engine engine = DhPkcs3Engine.fromGroup(group);
-
-      Stopwatch stopwatch = Stopwatch();
-      List<int> times = [];
-
-      for (int i = 0; i < iterations; i++) {
-        stopwatch.start();
-
-        engine.generateKeyPair();
-
-        stopwatch.stop();
-        times.add(stopwatch.elapsedMilliseconds);
-        stopwatch.reset();
-      }
-
-      int totalTime = times.reduce((a, b) => a + b);
-      double meanTime = totalTime / times.length;
-
-      print('generateKeyPair() mean: $meanTime ms (x$iterations) ($group)');
-    });
-    test('DhGroup.g18', () {
-      DhGroup group = DhGroup.g18;
-      DhPkcs3Engine engine = DhPkcs3Engine.fromGroup(group);
-
-      Stopwatch stopwatch = Stopwatch();
-      List<int> times = [];
-
-      for (int i = 0; i < iterations; i++) {
-        stopwatch.start();
-
-        engine.generateKeyPair();
-
-        stopwatch.stop();
-        times.add(stopwatch.elapsedMilliseconds);
-        stopwatch.reset();
-      }
-
-      int totalTime = times.reduce((a, b) => a + b);
-      double meanTime = totalTime / times.length;
-
-      print('generateKeyPair() mean: $meanTime ms (x$iterations) ($group)');
-    });
-  });
-
-  group('Test computeSecretKey (timing)', () {
-    test('DhGroup.g1', () {
-      DhGroup group = DhGroup.g1;
-      DhPkcs3Engine engine = DhPkcs3Engine.fromGroup(group);
-      DhPkcs3Engine otherEngine = DhPkcs3Engine.fromGroup(group);
-
-      Stopwatch stopwatch = Stopwatch();
-      List<int> times = [];
-
-      for (int i = 0; i < iterations; i++) {
-        engine.generateKeyPair();
-        DhKeyPair otherKeyPair = otherEngine.generateKeyPair();
-
-        stopwatch.start();
-
-        engine.computeSecretKey(otherKeyPair.publicKey.value);
-
-        stopwatch.stop();
-        times.add(stopwatch.elapsedMilliseconds);
-        stopwatch.reset();
-      }
-
-      int totalTime = times.reduce((a, b) => a + b);
-      double meanTime = totalTime / times.length;
-
-      print('computeSecretKey() mean: $meanTime ms (x$iterations) ($group)');
-    });
-    test('DhGroup.g2', () {
-      DhGroup group = DhGroup.g2;
-      DhPkcs3Engine engine = DhPkcs3Engine.fromGroup(group);
-      DhPkcs3Engine otherEngine = DhPkcs3Engine.fromGroup(group);
-
-      Stopwatch stopwatch = Stopwatch();
-      List<int> times = [];
-
-      for (int i = 0; i < iterations; i++) {
-        engine.generateKeyPair();
-        DhKeyPair otherKeyPair = otherEngine.generateKeyPair();
-
-        stopwatch.start();
-
-        engine.computeSecretKey(otherKeyPair.publicKey.value);
-
-        stopwatch.stop();
-        times.add(stopwatch.elapsedMilliseconds);
-        stopwatch.reset();
-      }
-
-      int totalTime = times.reduce((a, b) => a + b);
-      double meanTime = totalTime / times.length;
-
-      print('computeSecretKey() mean: $meanTime ms (x$iterations) ($group)');
-    });
-    test('DhGroup.g5', () {
-      DhGroup group = DhGroup.g5;
-      DhPkcs3Engine engine = DhPkcs3Engine.fromGroup(group);
-      DhPkcs3Engine otherEngine = DhPkcs3Engine.fromGroup(group);
-
-      Stopwatch stopwatch = Stopwatch();
-      List<int> times = [];
-
-      for (int i = 0; i < iterations; i++) {
-        engine.generateKeyPair();
-        DhKeyPair otherKeyPair = otherEngine.generateKeyPair();
-
-        stopwatch.start();
-
-        engine.computeSecretKey(otherKeyPair.publicKey.value);
-
-        stopwatch.stop();
-        times.add(stopwatch.elapsedMilliseconds);
-        stopwatch.reset();
-      }
-
-      int totalTime = times.reduce((a, b) => a + b);
-      double meanTime = totalTime / times.length;
-
-      print('computeSecretKey() mean: $meanTime ms (x$iterations) ($group)');
-    });
-    test('DhGroup.g14', () {
-      DhGroup group = DhGroup.g14;
-      DhPkcs3Engine engine = DhPkcs3Engine.fromGroup(group);
-      DhPkcs3Engine otherEngine = DhPkcs3Engine.fromGroup(group);
-
-      Stopwatch stopwatch = Stopwatch();
-      List<int> times = [];
-
-      for (int i = 0; i < iterations; i++) {
-        engine.generateKeyPair();
-        DhKeyPair otherKeyPair = otherEngine.generateKeyPair();
-
-        stopwatch.start();
-
-        engine.computeSecretKey(otherKeyPair.publicKey.value);
-
-        stopwatch.stop();
-        times.add(stopwatch.elapsedMilliseconds);
-        stopwatch.reset();
-      }
-
-      int totalTime = times.reduce((a, b) => a + b);
-      double meanTime = totalTime / times.length;
-
-      print('computeSecretKey() mean: $meanTime ms (x$iterations) ($group)');
-    });
-    test('DhGroup.g15', () {
-      DhGroup group = DhGroup.g15;
-      DhPkcs3Engine engine = DhPkcs3Engine.fromGroup(group);
-      DhPkcs3Engine otherEngine = DhPkcs3Engine.fromGroup(group);
-
-      Stopwatch stopwatch = Stopwatch();
-      List<int> times = [];
-
-      for (int i = 0; i < iterations; i++) {
-        engine.generateKeyPair();
-        DhKeyPair otherKeyPair = otherEngine.generateKeyPair();
-
-        stopwatch.start();
-
-        engine.computeSecretKey(otherKeyPair.publicKey.value);
-
-        stopwatch.stop();
-        times.add(stopwatch.elapsedMilliseconds);
-        stopwatch.reset();
-      }
-
-      int totalTime = times.reduce((a, b) => a + b);
-      double meanTime = totalTime / times.length;
-
-      print('computeSecretKey() mean: $meanTime ms (x$iterations) ($group)');
-    });
-    test('DhGroup.g16', () {
-      DhGroup group = DhGroup.g16;
-      DhPkcs3Engine engine = DhPkcs3Engine.fromGroup(group);
-      DhPkcs3Engine otherEngine = DhPkcs3Engine.fromGroup(group);
-
-      Stopwatch stopwatch = Stopwatch();
-      List<int> times = [];
-
-      for (int i = 0; i < iterations; i++) {
-        engine.generateKeyPair();
-        DhKeyPair otherKeyPair = otherEngine.generateKeyPair();
-
-        stopwatch.start();
-
-        engine.computeSecretKey(otherKeyPair.publicKey.value);
-
-        stopwatch.stop();
-        times.add(stopwatch.elapsedMilliseconds);
-        stopwatch.reset();
-      }
-
-      int totalTime = times.reduce((a, b) => a + b);
-      double meanTime = totalTime / times.length;
-
-      print('computeSecretKey() mean: $meanTime ms (x$iterations) ($group)');
-    });
-    test('DhGroup.g17', () {
-      DhGroup group = DhGroup.g17;
-      DhPkcs3Engine engine = DhPkcs3Engine.fromGroup(group);
-      DhPkcs3Engine otherEngine = DhPkcs3Engine.fromGroup(group);
-
-      Stopwatch stopwatch = Stopwatch();
-      List<int> times = [];
-
-      for (int i = 0; i < iterations; i++) {
-        engine.generateKeyPair();
-        DhKeyPair otherKeyPair = otherEngine.generateKeyPair();
-
-        stopwatch.start();
-
-        engine.computeSecretKey(otherKeyPair.publicKey.value);
-
-        stopwatch.stop();
-        times.add(stopwatch.elapsedMilliseconds);
-        stopwatch.reset();
-      }
-
-      int totalTime = times.reduce((a, b) => a + b);
-      double meanTime = totalTime / times.length;
-
-      print('computeSecretKey() mean: $meanTime ms (x$iterations) ($group)');
-    });
-    test('DhGroup.g18', () {
-      DhGroup group = DhGroup.g18;
-      DhPkcs3Engine engine = DhPkcs3Engine.fromGroup(group);
-      DhPkcs3Engine otherEngine = DhPkcs3Engine.fromGroup(group);
-
-      Stopwatch stopwatch = Stopwatch();
-      List<int> times = [];
-
-      for (int i = 0; i < iterations; i++) {
-        engine.generateKeyPair();
-        DhKeyPair otherKeyPair = otherEngine.generateKeyPair();
-
-        stopwatch.start();
-
-        engine.computeSecretKey(otherKeyPair.publicKey.value);
-
-        stopwatch.stop();
-        times.add(stopwatch.elapsedMilliseconds);
-        stopwatch.reset();
-      }
-
-      int totalTime = times.reduce((a, b) => a + b);
-      double meanTime = totalTime / times.length;
-
-      print('computeSecretKey() mean: $meanTime ms (x$iterations) ($group)');
+      expect(
+          secretKey.bitLength,
+          inInclusiveRange(keyPair.parameter.p.bitLength - 10,
+              keyPair.parameter.p.bitLength));
     });
   });
 }

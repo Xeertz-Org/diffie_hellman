@@ -5,27 +5,27 @@ void main() {
   test('Test getters - null length', () {
     DhParameter dhParameterSpec = DhParameter(
       p: BigInt.two,
-      g: 2,
+      g: BigInt.two,
     );
     expect(
       dhParameterSpec.p,
       BigInt.two,
     );
-    expect(dhParameterSpec.g, 2);
-    expect(dhParameterSpec.length, null);
+    expect(dhParameterSpec.g, BigInt.two);
+    expect(dhParameterSpec.l, null);
   });
   test('Test getters - length', () {
     DhParameter dhParameterSpec = DhParameter(
       p: BigInt.two,
-      g: 2,
-      length: 256,
+      g: BigInt.two,
+      l: 256,
     );
     expect(
       dhParameterSpec.p,
       BigInt.two,
     );
-    expect(dhParameterSpec.g, 2);
-    expect(dhParameterSpec.length, 256);
+    expect(dhParameterSpec.g, BigInt.two);
+    expect(dhParameterSpec.l, 256);
   });
 
   group('Test fromPem', () {
@@ -47,8 +47,8 @@ void main() {
             '999964483633719132036838469655517154312058275367764690003'),
       );
       expect(parameter.p.bitLength, 1024);
-      expect(parameter.g, 2);
-      expect(parameter.length, isNull);
+      expect(parameter.g, BigInt.two);
+      expect(parameter.l, isNull);
     });
 
     test('error', () {
@@ -70,8 +70,8 @@ void main() {
           '8012986657471890730448667462206282342720723923088245217734370'
           '5925333516187409136597518853061525638160486071114568606481665'
           '999964483633719132036838469655517154312058275367764690003'),
-      g: 2,
-      length: 256,
+      g: BigInt.two,
+      l: 256,
     );
 
     expect(

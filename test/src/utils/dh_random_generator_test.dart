@@ -6,7 +6,7 @@ void main() {
   group('Test generatePrivateValueFromP', () {
     test('Test generatePrivateValueFromP - g1', () {
       BigInt p = BigInt.parse(
-        g1Prime,
+        g1P,
         radix: 16,
       );
       BigInt privateValue = DhRandomGenerator.generatePrivateValueFromP(p);
@@ -18,7 +18,7 @@ void main() {
     });
     test('Test generatePrivateValueFromP - g2', () {
       BigInt p = BigInt.parse(
-        g2Prime,
+        g2P,
         radix: 16,
       );
       BigInt privateValue = DhRandomGenerator.generatePrivateValueFromP(p);
@@ -30,7 +30,7 @@ void main() {
     });
     test('Test generatePrivateValueFromP - g5', () {
       BigInt p = BigInt.parse(
-        g5Prime,
+        g5P,
         radix: 16,
       );
       BigInt privateValue = DhRandomGenerator.generatePrivateValueFromP(p);
@@ -42,7 +42,7 @@ void main() {
     });
     test('Test generatePrivateValueFromP - g14', () {
       BigInt p = BigInt.parse(
-        g14Prime,
+        g14P,
         radix: 16,
       );
       BigInt privateValue = DhRandomGenerator.generatePrivateValueFromP(p);
@@ -54,7 +54,7 @@ void main() {
     });
     test('Test generatePrivateValueFromP - g15', () {
       BigInt p = BigInt.parse(
-        g15Prime,
+        g15P,
         radix: 16,
       );
       BigInt privateValue = DhRandomGenerator.generatePrivateValueFromP(p);
@@ -66,7 +66,7 @@ void main() {
     });
     test('Test generatePrivateValueFromP - g16', () {
       BigInt p = BigInt.parse(
-        g16Prime,
+        g16P,
         radix: 16,
       );
       BigInt privateValue = DhRandomGenerator.generatePrivateValueFromP(p);
@@ -78,7 +78,7 @@ void main() {
     });
     test('Test generatePrivateValueFromP - g17', () {
       BigInt p = BigInt.parse(
-        g17Prime,
+        g17P,
         radix: 16,
       );
       BigInt privateValue = DhRandomGenerator.generatePrivateValueFromP(p);
@@ -90,7 +90,7 @@ void main() {
     });
     test('Test generatePrivateValueFromP - g18', () {
       BigInt p = BigInt.parse(
-        g18Prime,
+        g18P,
         radix: 16,
       );
       BigInt privateValue = DhRandomGenerator.generatePrivateValueFromP(p);

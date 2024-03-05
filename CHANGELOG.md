@@ -1,3 +1,12 @@
+## 1.1.3
+**Breaking changes**
+* Predefined values for DhGroup parameter
+* Added fromParameter() factory to DhPkcs3Engine
+* Added copyWith() to DhParameter
+* Added 1024-bit MODP group with 224-bit Prime Order Subgroup (DhGroup.g22)
+* Added 2048-bit MODP group with 224-bit Prime Order Subgroup (DhGroup.g23)
+* Added 2048-bit MODP group with 256-bit Prime Order Subgroup (DhGroup.g24)
+
 ## 1.1.0
 **Breaking changes**
 * Added wrapper class for keys. 

@@ -43,9 +43,9 @@ void main() {
           '957835946902018680242020305779282349273035389',
         ),
       );
-      expect(key.parameter.g, 2);
+      expect(key.parameter.g, BigInt.two);
       expect(
-        key.parameter.length,
+        key.parameter.l,
         isNull,
       );
       expect(
@@ -104,7 +104,7 @@ void main() {
           '957835946902018680242020305779282349273035389',
         ),
         parameter: DhParameter(
-          g: 2,
+          g: BigInt.two,
           p: BigInt.parse(
             '1705981236470358725694168947912340905184016456649447827905035366'
             '423517535309908785587707055879384617579501090023314190176825'

@@ -24,6 +24,40 @@ print(
 );
 ```
 
+### Engine configuration
+
+The engine can be configured in three ways:
+
+### Predefined group
+
+This factory constructor allows you to specify a Diffie-Hellman group to use. Each group has a predefined parameter
+definition
+
+```
+DhPkcs3Engine dhEngine = DhPkcs3Engine.fromGroup(DhGroup.g18);
+```
+
+### Custom parameter
+
+It's also possible to define a custom parameter definition (e.g. using the same from a group but with different values)
+
+```
+DhPkcs3Engine dhEngine = DhPkcs3Engine.fromParameter(DhGroup.g18.parameter.copyWith(l: 1024));
+```
+
+### Existing key pair
+
+The engine can be created from an existing key pair
+
+```
+DhPrivateKey privateKey = DhPrivateKey.fromPem('...');
+DhPublicKey publicKey = DhPublicKey.fromPem('...');
+
+DhKeyPair keyPair = DhKeyPair(privateKey: privateKey, publicKey: publicKey);
+
+DhPkcs3Engine dhEngine = DhPkcs3Engine.fromKeyPair(keyPair);
+```
+
 ### PEM serialization/deserialization
 
 Each key can be constructed from a PEM string
@@ -49,18 +83,20 @@ String parameterPem = parameter.toPem();
 
 ## DH Groups
 
-| Group ID | Modulus length | Strength range (in bits) |
-|----------|----------------|--------------------------|
-| 1        | 768-bit        | -                        |
-| 2        | 1024-bit       | -                        |
-| 5        | 1536-bit       | 90-120                   |
-| 14       | 2048-bit       | 110-160                  |
-| 15       | 3072-bit       | 130-210                  |
-| 16       | 4096-bit       | 150-240                  |
-| 17       | 6144-bit       | 170-270                  |
-| 18       | 8192-bit       | 190-310                  |
+| Group ID | Modulus length (p) | Exponent size (l) (in bits) | Strength (in bits) |
+|----------|--------------------|-----------------------------|--------------------|
+| 1        | 768-bit            | 160                         | -                  |
+| 2        | 1024-bit           | 160                         | 80                 |
+| 5        | 1536-bit           | 240                         | 120                |
+| 14       | 2048-bit           | 320                         | 160                |
+| 15       | 3072-bit           | 384                         | 190                |
+| 16       | 4096-bit           | 480                         | 240                |
+| 17       | 6144-bit           | 512                         | 250                |
+| 18       | 8192-bit           | 640                         | 320                |
 
 ## References
 
 - https://www.teletrust.de/fileadmin/files/oid/oid_pkcs-3v1-4.pdf
 - https://www.ietf.org/rfc/rfc3526.txt
+- https://datatracker.ietf.org/doc/html/rfc2409
+- https://datatracker.ietf.org/doc/html/rfc5114

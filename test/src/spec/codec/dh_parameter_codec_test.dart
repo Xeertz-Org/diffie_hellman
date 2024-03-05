@@ -28,8 +28,8 @@ void main() {
             '999964483633719132036838469655517154312058275367764690003'),
       );
       expect(parameter.p.bitLength, 1024);
-      expect(parameter.g, 2);
-      expect(parameter.length, isNull);
+      expect(parameter.g, BigInt.two);
+      expect(parameter.l, isNull);
     });
     test('error', () {
       String pem = '-----BEGIN DH PARAMETERS-----'
@@ -54,8 +54,8 @@ void main() {
             '8012986657471890730448667462206282342720723923088245217734370'
             '5925333516187409136597518853061525638160486071114568606481665'
             '999964483633719132036838469655517154312058275367764690003'),
-        g: 2,
-        length: 256,
+        g: BigInt.two,
+        l: 256,
       );
 
       String pem = codec.encode(parameter);
@@ -78,7 +78,7 @@ void main() {
             '8012986657471890730448667462206282342720723923088245217734370'
             '5925333516187409136597518853061525638160486071114568606481665'
             '999964483633719132036838469655517154312058275367764690003'),
-        g: 2,
+        g: BigInt.two,
       );
 
       String pem = codec.encode(parameter);

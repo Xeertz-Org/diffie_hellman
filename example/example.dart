@@ -7,15 +7,21 @@ void main() {
   DhKeyPair keyPair = dhEngine.generateKeyPair();
   DhKeyPair otherKeyPair = otherDhEngine.generateKeyPair();
 
-  print('Public Key: ${keyPair.publicKey.value}');
-  print('Private Key: ${keyPair.privateKey.value}');
-  print('Other public Key: ${otherKeyPair.publicKey.value}');
-  print('Other private Key: ${otherKeyPair.privateKey.value}');
+  print('Public key: ${keyPair.publicKey.value}');
+  print('Private key: ${keyPair.privateKey.value}');
+  print('Other public key: ${otherKeyPair.publicKey.value}');
+  print('Other private key: ${otherKeyPair.privateKey.value}');
 
   print(
-    'Secret Key: ${dhEngine.computeSecretKey(otherKeyPair.publicKey.value)}',
+    'Secret key: ${dhEngine.computeSecretKey(otherKeyPair.publicKey.value)}',
   );
   print(
-    'Other secret Key: ${otherDhEngine.computeSecretKey(keyPair.publicKey.value)}',
+    'Other secret key: ${otherDhEngine.computeSecretKey(keyPair.publicKey.value)}',
   );
+
+  print('Public key PEM: ${keyPair.publicKey.toPem()}');
+  print('Other public key PEM: ${otherKeyPair.publicKey.toPem()}');
+
+  print('Private key PEM: ${keyPair.privateKey.toPem()}');
+  print('Other private key PEM: ${otherKeyPair.privateKey.toPem()}');
 }

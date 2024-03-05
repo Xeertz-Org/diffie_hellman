@@ -19,9 +19,9 @@ class DhParameterCodec extends PemCodec<DhParameter> {
     var asn1Sequence = ASN1Sequence();
 
     asn1Sequence.add(ASN1Integer(parameter.p));
-    asn1Sequence.add(ASN1Integer(BigInt.from(parameter.g)));
-    if (parameter.length != null) {
-      asn1Sequence.add(ASN1Integer(BigInt.from(parameter.length!)));
+    asn1Sequence.add(ASN1Integer(parameter.g));
+    if (parameter.l != null) {
+      asn1Sequence.add(ASN1Integer(BigInt.from(parameter.l!)));
     }
 
     return asn1Sequence;
@@ -34,7 +34,7 @@ class DhParameterCodec extends PemCodec<DhParameter> {
     ASN1Sequence asn1Sequence = asn1Parser.nextObject() as ASN1Sequence;
 
     BigInt p = (asn1Sequence.elements[0] as ASN1Integer).valueAsBigInteger;
-    int g = (asn1Sequence.elements[1] as ASN1Integer).valueAsBigInteger.toInt();
+    BigInt g = (asn1Sequence.elements[1] as ASN1Integer).valueAsBigInteger;
 
     int? length;
     if (asn1Sequence.elements.length == 3) {
@@ -45,7 +45,7 @@ class DhParameterCodec extends PemCodec<DhParameter> {
     return DhParameter(
       p: p,
       g: g,
-      length: length,
+      l: length,
     );
   }
 }

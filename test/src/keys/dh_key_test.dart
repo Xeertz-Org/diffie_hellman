@@ -48,8 +48,8 @@ void main() {
           '150201410623989347868579314525119658923402674799093063288032'
           '9238408161847',
         ),
-        g: 2,
-        length: null,
+        g: BigInt.two,
+        l: null,
       );
       DhKeyPair keyPair = DhKeyPair(
         publicKey: publicKey,

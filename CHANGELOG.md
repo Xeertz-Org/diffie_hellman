@@ -1,3 +1,8 @@
+## 1.2.0
+**Breaking changes**
+* Bumped minimum Dart SDK version to 3.4.0
+* Updated dependencies
+
 ## 1.1.3
 **Breaking changes**
 * Predefined values for DhGroup parameter
@@ -15,7 +20,7 @@
 
 ## 1.0.0
 **Breaking changes**
-* Bumped minimal Dart SDK version to 2.17.0
+* Bumped minimum Dart SDK version to 2.17.0
 * Added DhGroup enum instead of int groupId
 * Added DhPkcs3Engine.fromKeyPair() factory
 * Allowed key pair regeneration in DhPkcs3Engine

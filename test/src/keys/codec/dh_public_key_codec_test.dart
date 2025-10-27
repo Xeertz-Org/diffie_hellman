@@ -11,7 +11,8 @@ void main() {
   });
   group('Test decode', () {
     test('success', () {
-      String pem = '-----BEGIN PUBLIC KEY-----'
+      String pem =
+          '-----BEGIN PUBLIC KEY-----'
           'MIICJDCCARcGCSqGSIb3DQEDATCCAQgCggEBAIcjxlcFdybmHMukoDlQbpv7gnXQ58Lf'
           'KITR+nZQbuRXeJCXHDm1sB40IrvRNzU1fGwlCjHpmdcV6NUEiD2T39xVFxX8p8+I80EK'
           'xopImraK2+Q9AKJKFOwyF7akwhggdRLg9lQ3oVLEhJdRRjRvX88gT77kiYOWnjVdWSs7'
@@ -44,10 +45,7 @@ void main() {
         ),
       );
       expect(key.parameter.g, BigInt.two);
-      expect(
-        key.parameter.l,
-        isNull,
-      );
+      expect(key.parameter.l, isNull);
       expect(
         key.parameter.p,
         BigInt.parse(
@@ -67,7 +65,8 @@ void main() {
       expect(key.parameter.p.bitLength, 2048);
     });
     test('error', () {
-      String pem = '-----BEGIN PUBLIC KEY-----'
+      String pem =
+          '-----BEGIN PUBLIC KEY-----'
           'MIICJDCCARcGCSqGSIb3DQEDATCCAQgCggEBAIcjxlcFdybmHMukoDlQbpv7gnXQ58Lf'
           'KITR+nZQbuRXeJCXHDm1sB40IrvRNzU1fGwlCjHpmdcV6NUEiD2T39xVFxX8p8+I80EK'
           'xopImraK2+Q9AKJKFOwyF7akwhggdRLg9lQ3oVLEhJdRRjRvX88gT77kiYOWnjVdWSs7'
@@ -81,10 +80,7 @@ void main() {
           'e+8gWxPdyXB6oB3P/7+xrIXw4myJ0I2o8j78sq4hKXA0LQq1y2m8yrJ9'
           '-----END PUBLIC KEY-----';
 
-      expect(
-        () => codec.decode(pem),
-        throwsA(isA<ArgumentError>()),
-      );
+      expect(() => codec.decode(pem), throwsA(isA<ArgumentError>()));
     });
   });
 

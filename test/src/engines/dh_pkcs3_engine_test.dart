@@ -100,8 +100,10 @@ void main() {
     expect(engine.keyPair?.parameter, parameter);
     expect(engine.publicKey, isNotNull);
     expect(engine.privateKey, isNotNull);
-    expect(engine.publicKey!.value.bitLength,
-        inInclusiveRange(parameter.p.bitLength - 5, parameter.p.bitLength));
+    expect(
+      engine.publicKey!.value.bitLength,
+      inInclusiveRange(parameter.p.bitLength - 5, parameter.p.bitLength),
+    );
     expect(engine.privateKey!.value.bitLength, DhGroup.g18.parameter.l);
     expect(engine.secretKey, isNull);
   });
@@ -114,8 +116,9 @@ void main() {
       DhKeyPair keyPair = engine.generateKeyPair();
       DhKeyPair otherKeyPair = otherEngine.generateKeyPair();
       BigInt secretKey = engine.computeSecretKey(otherKeyPair.publicKey.value);
-      BigInt otherSecretKey =
-          otherEngine.computeSecretKey(keyPair.publicKey.value);
+      BigInt otherSecretKey = otherEngine.computeSecretKey(
+        keyPair.publicKey.value,
+      );
       expect(secretKey, isNot(equals(otherSecretKey)));
     });
     test('success', () {
@@ -125,13 +128,17 @@ void main() {
       DhKeyPair keyPair = engine.generateKeyPair();
       DhKeyPair otherKeyPair = otherEngine.generateKeyPair();
       BigInt secretKey = engine.computeSecretKey(otherKeyPair.publicKey.value);
-      BigInt otherSecretKey =
-          otherEngine.computeSecretKey(keyPair.publicKey.value);
+      BigInt otherSecretKey = otherEngine.computeSecretKey(
+        keyPair.publicKey.value,
+      );
       expect(secretKey, otherSecretKey);
       expect(
-          secretKey.bitLength,
-          inInclusiveRange(keyPair.parameter.p.bitLength - 10,
-              keyPair.parameter.p.bitLength));
+        secretKey.bitLength,
+        inInclusiveRange(
+          keyPair.parameter.p.bitLength - 10,
+          keyPair.parameter.p.bitLength,
+        ),
+      );
     });
   });
 }

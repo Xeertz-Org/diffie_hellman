@@ -18,15 +18,12 @@ class DhPublicKeyCodec extends DhKeyCodec<DhPublicKey> {
     ASN1Sequence outerSequence = ASN1Sequence();
 
     ASN1Sequence keyAgreementSequence = ASN1Sequence();
-    keyAgreementSequence.add(
-      ASN1ObjectIdentifier(
-        DhKeyCodec.oId,
-      ),
-    );
+    keyAgreementSequence.add(ASN1ObjectIdentifier(DhKeyCodec.oId));
     keyAgreementSequence.add(parameterCodec.asn1Encode(key.parameter));
 
-    ASN1BitString publicKeyBitString =
-        ASN1BitString(key.value.toBigEndianBytes());
+    ASN1BitString publicKeyBitString = ASN1BitString(
+      key.value.toBigEndianBytes(),
+    );
 
     outerSequence.add(keyAgreementSequence);
     outerSequence.add(publicKeyBitString);
@@ -54,11 +51,13 @@ class DhPublicKeyCodec extends DhKeyCodec<DhPublicKey> {
     ASN1BitString publicKeyBitString =
         outerSequence.elements[1] as ASN1BitString;
 
-    DhParameter parameter =
-        parameterCodec.asn1Decode(parameterSequence.encodedBytes);
+    DhParameter parameter = parameterCodec.asn1Decode(
+      parameterSequence.encodedBytes,
+    );
 
-    BigInt publicKeyValue =
-        Uint8List.fromList(publicKeyBitString.stringValue).toBigInt();
+    BigInt publicKeyValue = Uint8List.fromList(
+      publicKeyBitString.stringValue,
+    ).toBigInt();
 
     return DhPublicKey(publicKeyValue, parameter: parameter);
   }

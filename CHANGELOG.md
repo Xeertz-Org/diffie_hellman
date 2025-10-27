@@ -1,3 +1,8 @@
+## 1.4.0
+**Breaking changes**
+* Bumped minimum Dart SDK version to 3.9.0
+* Updated dependencies
+
 ## 1.3.0
 **Breaking changes**
 * Bumped minimum Dart SDK version to 3.6.0

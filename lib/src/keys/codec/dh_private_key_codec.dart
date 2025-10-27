@@ -18,15 +18,12 @@ class DhPrivateKeyCodec extends DhKeyCodec<DhPrivateKey> {
     ASN1Sequence outerSequence = ASN1Sequence();
 
     ASN1Sequence keyAgreementSequence = ASN1Sequence();
-    keyAgreementSequence.add(
-      ASN1ObjectIdentifier(
-        DhKeyCodec.oId,
-      ),
-    );
+    keyAgreementSequence.add(ASN1ObjectIdentifier(DhKeyCodec.oId));
     keyAgreementSequence.add(parameterCodec.asn1Encode(key.parameter));
 
-    ASN1OctetString privateKeyOctetString =
-        ASN1OctetString(key.value.toBigEndianBytes());
+    ASN1OctetString privateKeyOctetString = ASN1OctetString(
+      key.value.toBigEndianBytes(),
+    );
 
     outerSequence.add(ASN1Integer(BigInt.zero));
     outerSequence.add(keyAgreementSequence);
@@ -55,8 +52,9 @@ class DhPrivateKeyCodec extends DhKeyCodec<DhPrivateKey> {
     ASN1OctetString privateKeyOctetString =
         outerSequence.elements[2] as ASN1OctetString;
 
-    DhParameter parameter =
-        parameterCodec.asn1Decode(parameterSequence.encodedBytes);
+    DhParameter parameter = parameterCodec.asn1Decode(
+      parameterSequence.encodedBytes,
+    );
 
     BigInt privateKeyValue = privateKeyOctetString.octets.toBigInt();
 

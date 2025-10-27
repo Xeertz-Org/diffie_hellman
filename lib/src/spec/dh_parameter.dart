@@ -16,32 +16,17 @@ class DhParameter extends Equatable {
   /// The size in bits of the random exponent (private key).
   final int? l;
 
-  DhParameter({
-    required this.p,
-    required this.g,
-    this.l,
-  }) : _codec = DhParameterCodec();
+  DhParameter({required this.p, required this.g, this.l})
+    : _codec = DhParameterCodec();
 
   /// Constructs a [DhParameter] instance using a PEM string.
   factory DhParameter.fromPem(String pem) => DhParameterCodec().decode(pem);
 
   String toPem() => _codec.encode(this);
 
-  DhParameter copyWith({
-    BigInt? p,
-    BigInt? g,
-    int? l,
-  }) =>
-      DhParameter(
-        p: p ?? this.p,
-        g: g ?? this.g,
-        l: l ?? this.l,
-      );
+  DhParameter copyWith({BigInt? p, BigInt? g, int? l}) =>
+      DhParameter(p: p ?? this.p, g: g ?? this.g, l: l ?? this.l);
 
   @override
-  List<Object?> get props => [
-        p,
-        g,
-        l,
-      ];
+  List<Object?> get props => [p, g, l];
 }

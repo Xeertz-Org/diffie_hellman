@@ -12,7 +12,8 @@ void main() {
   });
   group('Test decode', () {
     test('success', () {
-      String pem = '-----BEGIN PRIVATE KEY-----'
+      String pem =
+          '-----BEGIN PRIVATE KEY-----'
           'MIICJgIBADCCARcGCSqGSIb3DQEDATCCAQgCggEBAIcjxlcFdybmHMukoDlQbpv7gnXQ'
           '58LfKITR+nZQbuRXeJCXHDm1sB40IrvRNzU1fGwlCjHpmdcV6NUEiD2T39xVFxX8p8+I'
           '80EKxopImraK2+Q9AKJKFOwyF7akwhggdRLg9lQ3oVLEhJdRRjRvX88gT77kiYOWnjVd'
@@ -45,10 +46,7 @@ void main() {
         ),
       );
       expect(key.parameter.g, BigInt.two);
-      expect(
-        key.parameter.l,
-        isNull,
-      );
+      expect(key.parameter.l, isNull);
       expect(
         key.parameter.p,
         BigInt.parse(
@@ -68,7 +66,8 @@ void main() {
       expect(key.parameter.p.bitLength, 2048);
     });
     test('error', () {
-      String pem = '-----BEGIN PRIVATE KEY-----'
+      String pem =
+          '-----BEGIN PRIVATE KEY-----'
           'MIICJgIBADCCARcGCSqGSIb3DQEDATCCAQgCggEBAIcjxlcFdybmHMukoDlQbpv7gnXQ'
           '58LfKITR+nZQbuRXeJCXHDm1sB40IrvRNzU1fGwlCjHpmdcV6NUEiD2T39xVFxX8p8+I'
           '80EKxopImraK2+Q9AKJKFOwyF7akwhggdRLg9lQ3oVLEhJdRRjRvX88gT77kiYOWnjVd'
@@ -82,10 +81,7 @@ void main() {
           'j3BrXtiwEO9dgxMuhMKz4xzpjL6rJxTAukJ0G2CzLCT9t47H9RgA9tz/0ig='
           '-----END PRIVATE KEY-----';
 
-      expect(
-        () => codec.decode(pem),
-        throwsA(isA<FormatException>()),
-      );
+      expect(() => codec.decode(pem), throwsA(isA<FormatException>()));
     });
   });
 

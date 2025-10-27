@@ -85,10 +85,7 @@ void main() {
         '-----END PRIVATE KEY-----',
       );
       expect(
-        () => DhKeyPair(
-          publicKey: publicKey,
-          privateKey: privateKey,
-        ),
+        () => DhKeyPair(publicKey: publicKey, privateKey: privateKey),
         throwsA(isA<ArgumentError>()),
       );
     });

@@ -32,10 +32,8 @@ class DhPkcs3Engine implements DhEngine {
   @override
   BigInt? get secretKey => _secretKey;
 
-  DhPkcs3Engine._({
-    required this.parameter,
-    DhKeyPair? keyPair,
-  }) : _keyPair = keyPair;
+  DhPkcs3Engine._({required this.parameter, DhKeyPair? keyPair})
+    : _keyPair = keyPair;
 
   /// Constructs a [DhPkcs3Engine] instance using a [DhGroup].
   factory DhPkcs3Engine.fromGroup(DhGroup group) =>
@@ -46,10 +44,8 @@ class DhPkcs3Engine implements DhEngine {
       DhPkcs3Engine._(parameter: parameter);
 
   /// Constructs a [DhPkcs3Engine] instance using a [DhKeyPair].
-  factory DhPkcs3Engine.fromKeyPair(DhKeyPair keyPair) => DhPkcs3Engine._(
-        parameter: keyPair.parameter,
-        keyPair: keyPair,
-      );
+  factory DhPkcs3Engine.fromKeyPair(DhKeyPair keyPair) =>
+      DhPkcs3Engine._(parameter: keyPair.parameter, keyPair: keyPair);
 
   /// Compute the secret key using the other party public key
   /// If the [keyPair] is not yet generated, a [StateError] is thrown.
@@ -57,12 +53,10 @@ class DhPkcs3Engine implements DhEngine {
   BigInt computeSecretKey(BigInt otherPublicValue) {
     if (_keyPair == null) {
       throw StateError(
-          'Key pair not generated. Call generateKeyPair() method first');
+        'Key pair not generated. Call generateKeyPair() method first',
+      );
     }
-    return otherPublicValue.modPow(
-      privateKey!.value,
-      parameter.p,
-    );
+    return otherPublicValue.modPow(privateKey!.value, parameter.p);
   }
 
   /// Generate [publicKey] and [privateKey] based on the [parameterSpec] of this engine.
@@ -80,19 +74,16 @@ class DhPkcs3Engine implements DhEngine {
   @override
   @protected
   DhPrivateKey generatePrivateKey() => DhPrivateKey(
-        parameter.l != null
-            ? DhRandomGenerator.generatePrivateValueWithLength(parameter.l!)
-            : DhRandomGenerator.generatePrivateValueFromP(parameter.p),
-        parameter: parameter,
-      );
+    parameter.l != null
+        ? DhRandomGenerator.generatePrivateValueWithLength(parameter.l!)
+        : DhRandomGenerator.generatePrivateValueFromP(parameter.p),
+    parameter: parameter,
+  );
 
   @override
   @protected
   DhPublicKey generatePublicKey(BigInt privateValue) => DhPublicKey(
-        parameter.g.modPow(
-          privateValue,
-          parameter.p,
-        ),
-        parameter: parameter,
-      );
+    parameter.g.modPow(privateValue, parameter.p),
+    parameter: parameter,
+  );
 }

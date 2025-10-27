@@ -25,8 +25,9 @@ void main() {
 
           Stopwatch cStopwatch = Stopwatch()..start();
 
-          BigInt secretKey =
-              engine.computeSecretKey(otherKeyPair.publicKey.value);
+          BigInt secretKey = engine.computeSecretKey(
+            otherKeyPair.publicKey.value,
+          );
 
           cStopwatch.stop();
 

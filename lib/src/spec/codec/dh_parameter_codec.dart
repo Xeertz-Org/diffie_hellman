@@ -38,14 +38,10 @@ class DhParameterCodec extends PemCodec<DhParameter> {
 
     int? length;
     if (asn1Sequence.elements.length == 3) {
-      length =
-          (asn1Sequence.elements[2] as ASN1Integer?)?.valueAsBigInteger.toInt();
+      length = (asn1Sequence.elements[2] as ASN1Integer?)?.valueAsBigInteger
+          .toInt();
     }
 
-    return DhParameter(
-      p: p,
-      g: g,
-      l: length,
-    );
+    return DhParameter(p: p, g: g, l: length);
   }
 }

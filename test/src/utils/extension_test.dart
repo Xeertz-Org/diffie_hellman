@@ -9,10 +9,7 @@ void main() {
   group('Test RandomExtension', () {
     test('nextBigInt(5000)', () {
       int bitLength = 4097;
-      expect(
-        () => random.nextBigInt(bitLength),
-        throwsA(isA<ArgumentError>()),
-      );
+      expect(() => random.nextBigInt(bitLength), throwsA(isA<ArgumentError>()));
     });
     test('nextBigInt(4096)', () {
       int bitLength = 4096;
@@ -43,8 +40,15 @@ void main() {
 
   group('Test Uint8ListExtension', () {
     test('toBigInt', () {
-      final bytes =
-          Uint8List.fromList([0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07]);
+      final bytes = Uint8List.fromList([
+        0x01,
+        0x02,
+        0x03,
+        0x04,
+        0x05,
+        0x06,
+        0x07,
+      ]);
       final bigInt = bytes.toBigInt();
       expect(bigInt, BigInt.from(0x01020304050607));
     });

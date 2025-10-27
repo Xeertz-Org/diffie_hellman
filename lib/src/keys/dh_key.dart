@@ -9,26 +9,16 @@ abstract class DhKey extends Equatable {
   final DhParameter parameter;
   final DhKeyCodec _codec;
 
-  const DhKey(
-    this.value, {
-    required this.parameter,
-    required DhKeyCodec codec,
-  }) : _codec = codec;
+  const DhKey(this.value, {required this.parameter, required DhKeyCodec codec})
+    : _codec = codec;
 
-  factory DhKey.fromPem(
-    String pem, {
-    required DhKeyCodec codec,
-  }) =>
+  factory DhKey.fromPem(String pem, {required DhKeyCodec codec}) =>
       codec.decode(pem);
 
   String toPem() => _codec.encode(this);
 
   @override
-  List<Object> get props => [
-        value,
-        parameter,
-        _codec,
-      ];
+  List<Object> get props => [value, parameter, _codec];
 }
 
 /// This class is a container for a key pair (a public key and a private key)
@@ -38,13 +28,11 @@ class DhKeyPair extends Equatable {
 
   /// Constructs a [DhKeyPair] instance using a public key and a private key.
   /// If the public and private keys have different parameter specs, an [ArgumentError] is thrown.
-  DhKeyPair({
-    required this.publicKey,
-    required this.privateKey,
-  }) {
+  DhKeyPair({required this.publicKey, required this.privateKey}) {
     if (publicKey.parameter != privateKey.parameter) {
       throw ArgumentError(
-          'The public and private keys must have the same parameter spec');
+        'The public and private keys must have the same parameter spec',
+      );
     }
   }
 
@@ -52,8 +40,5 @@ class DhKeyPair extends Equatable {
   DhParameter get parameter => publicKey.parameter;
 
   @override
-  List<Object?> get props => [
-        publicKey,
-        privateKey,
-      ];
+  List<Object?> get props => [publicKey, privateKey];
 }

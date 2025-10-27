@@ -5,10 +5,7 @@ import 'package:test/test.dart';
 void main() {
   group('Test generatePrivateValueFromP', () {
     test('Test generatePrivateValueFromP - g1', () {
-      BigInt p = BigInt.parse(
-        g1P,
-        radix: 16,
-      );
+      BigInt p = BigInt.parse(g1P, radix: 16);
       BigInt privateValue = DhRandomGenerator.generatePrivateValueFromP(p);
       BigInt lowerBound = BigInt.zero;
       BigInt upperBound = p - BigInt.one;
@@ -17,10 +14,7 @@ void main() {
       expect(privateValue, lessThan(upperBound));
     });
     test('Test generatePrivateValueFromP - g2', () {
-      BigInt p = BigInt.parse(
-        g2P,
-        radix: 16,
-      );
+      BigInt p = BigInt.parse(g2P, radix: 16);
       BigInt privateValue = DhRandomGenerator.generatePrivateValueFromP(p);
       BigInt lowerBound = BigInt.zero;
       BigInt upperBound = p - BigInt.one;
@@ -29,10 +23,7 @@ void main() {
       expect(privateValue, lessThan(upperBound));
     });
     test('Test generatePrivateValueFromP - g5', () {
-      BigInt p = BigInt.parse(
-        g5P,
-        radix: 16,
-      );
+      BigInt p = BigInt.parse(g5P, radix: 16);
       BigInt privateValue = DhRandomGenerator.generatePrivateValueFromP(p);
       BigInt lowerBound = BigInt.zero;
       BigInt upperBound = p - BigInt.one;
@@ -41,10 +32,7 @@ void main() {
       expect(privateValue, lessThan(upperBound));
     });
     test('Test generatePrivateValueFromP - g14', () {
-      BigInt p = BigInt.parse(
-        g14P,
-        radix: 16,
-      );
+      BigInt p = BigInt.parse(g14P, radix: 16);
       BigInt privateValue = DhRandomGenerator.generatePrivateValueFromP(p);
       BigInt lowerBound = BigInt.zero;
       BigInt upperBound = p - BigInt.one;
@@ -53,10 +41,7 @@ void main() {
       expect(privateValue, lessThan(upperBound));
     });
     test('Test generatePrivateValueFromP - g15', () {
-      BigInt p = BigInt.parse(
-        g15P,
-        radix: 16,
-      );
+      BigInt p = BigInt.parse(g15P, radix: 16);
       BigInt privateValue = DhRandomGenerator.generatePrivateValueFromP(p);
       BigInt lowerBound = BigInt.zero;
       BigInt upperBound = p - BigInt.one;
@@ -65,10 +50,7 @@ void main() {
       expect(privateValue, lessThan(upperBound));
     });
     test('Test generatePrivateValueFromP - g16', () {
-      BigInt p = BigInt.parse(
-        g16P,
-        radix: 16,
-      );
+      BigInt p = BigInt.parse(g16P, radix: 16);
       BigInt privateValue = DhRandomGenerator.generatePrivateValueFromP(p);
       BigInt lowerBound = BigInt.zero;
       BigInt upperBound = p - BigInt.one;
@@ -77,10 +59,7 @@ void main() {
       expect(privateValue, lessThan(upperBound));
     });
     test('Test generatePrivateValueFromP - g17', () {
-      BigInt p = BigInt.parse(
-        g17P,
-        radix: 16,
-      );
+      BigInt p = BigInt.parse(g17P, radix: 16);
       BigInt privateValue = DhRandomGenerator.generatePrivateValueFromP(p);
       BigInt lowerBound = BigInt.zero;
       BigInt upperBound = p - BigInt.one;
@@ -89,10 +68,7 @@ void main() {
       expect(privateValue, lessThan(upperBound));
     });
     test('Test generatePrivateValueFromP - g18', () {
-      BigInt p = BigInt.parse(
-        g18P,
-        radix: 16,
-      );
+      BigInt p = BigInt.parse(g18P, radix: 16);
       BigInt privateValue = DhRandomGenerator.generatePrivateValueFromP(p);
       BigInt lowerBound = BigInt.zero;
       BigInt upperBound = p - BigInt.one;
@@ -106,8 +82,9 @@ void main() {
       int bitLength = 4096;
       BigInt lowerBound = BigInt.two.pow(bitLength - 1);
       BigInt upperBound = BigInt.two * lowerBound;
-      BigInt privateValue =
-          DhRandomGenerator.generatePrivateValueWithLength(bitLength);
+      BigInt privateValue = DhRandomGenerator.generatePrivateValueWithLength(
+        bitLength,
+      );
       expect(privateValue, greaterThanOrEqualTo(lowerBound));
       expect(privateValue, lessThan(upperBound));
     });
@@ -115,8 +92,9 @@ void main() {
       int bitLength = 2048;
       BigInt lowerBound = BigInt.two.pow(bitLength - 1);
       BigInt upperBound = BigInt.two * lowerBound;
-      BigInt privateValue =
-          DhRandomGenerator.generatePrivateValueWithLength(bitLength);
+      BigInt privateValue = DhRandomGenerator.generatePrivateValueWithLength(
+        bitLength,
+      );
       expect(privateValue, greaterThanOrEqualTo(lowerBound));
       expect(privateValue, lessThan(upperBound));
     });
@@ -124,8 +102,9 @@ void main() {
       int bitLength = 1024;
       BigInt lowerBound = BigInt.two.pow(bitLength - 1);
       BigInt upperBound = BigInt.two * lowerBound;
-      BigInt privateValue =
-          DhRandomGenerator.generatePrivateValueWithLength(bitLength);
+      BigInt privateValue = DhRandomGenerator.generatePrivateValueWithLength(
+        bitLength,
+      );
       expect(privateValue, greaterThanOrEqualTo(lowerBound));
       expect(privateValue, lessThan(upperBound));
     });
@@ -133,8 +112,9 @@ void main() {
       int bitLength = 512;
       BigInt lowerBound = BigInt.two.pow(bitLength - 1);
       BigInt upperBound = BigInt.two * lowerBound;
-      BigInt privateValue =
-          DhRandomGenerator.generatePrivateValueWithLength(bitLength);
+      BigInt privateValue = DhRandomGenerator.generatePrivateValueWithLength(
+        bitLength,
+      );
       expect(privateValue, greaterThanOrEqualTo(lowerBound));
       expect(privateValue, lessThan(upperBound));
     });
@@ -142,8 +122,9 @@ void main() {
       int bitLength = 256;
       BigInt lowerBound = BigInt.two.pow(bitLength - 1);
       BigInt upperBound = BigInt.two * lowerBound;
-      BigInt privateValue =
-          DhRandomGenerator.generatePrivateValueWithLength(bitLength);
+      BigInt privateValue = DhRandomGenerator.generatePrivateValueWithLength(
+        bitLength,
+      );
       expect(privateValue, greaterThanOrEqualTo(lowerBound));
       expect(privateValue, lessThan(upperBound));
     });
